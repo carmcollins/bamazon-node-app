@@ -25,4 +25,9 @@ INSERT INTO products (product_name, department_name, price, stock_quantity) VALU
     ("Pillow", "Home Decor", 50, 10),
     ("Vase", "Home Decor", 50, 5);
 
+UPDATE products SET stock_quantity = 20 WHERE department_name = "Magazines";
+UPDATE products SET stock_quantity = 10 WHERE department_name = "Art Supplies";
+UPDATE products SET stock_quantity = 5 WHERE department_name = "Home Decor";
+UPDATE products SET stock_quantity = 3 WHERE id = 3,6,9;
+
 SELECT * FROM products;

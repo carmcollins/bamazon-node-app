@@ -11,20 +11,14 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
-    console.log("\nConnected as ID: " + connection.threadId + "\n");
+    // console.log("\nConnected as ID: " + connection.threadId + "\n");
     showProducts();
 });
 
 function showProducts() {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
-        for (var i = 0; i < res.length; i++) {
-            console.log(
-                res[i].id + ". " +
-                res[i].product_name + ", $" +
-                res[i].price
-            );
-        };
+        console.table(res);
         startSale();
     });
 };
@@ -49,12 +43,12 @@ function startSale() {
             itemPrice = res[0].price;
 
             if (userQuantity > storeQuantity) {
-                console.log("\nInsufficient quantity! Try again!\n");
+                console.log("\nINSUFFICIENT QUANTITY! TRY AGAIN!\n");
                 showProducts();
             } else {
-                var currentQuantity = storeQuantity - userQuantity;
+                var currentQuantity = parseInt(storeQuantity) - parseInt(userQuantity);
 
-                var totalCost = userQuantity * itemPrice;
+                var item = (res[0].product_name).toUpperCase();
 
                 connection.query(
                     "UPDATE products SET ? WHERE ?",
@@ -69,7 +63,7 @@ function startSale() {
                     function(err, res) {
                         if (err) throw err;
 
-                        console.log("\nYour total is: $" + totalCost + "\n");
+                        console.log("\nSUCCESSFULLY PURCHASED " + userQuantity + " " + item + "S!\n");
                         showProducts();
                     }
                 );
