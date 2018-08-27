@@ -5,7 +5,7 @@ Bamazon is a command line node app that creates an Amazon-like storefront with M
 
 ### Demo
 
-<img src="./demo.svg">
+<img src="https://cdn.rawgit.com/carmcollins/bamazon-node-app/be113af9/demo.svg?sanitize=true">
 
 ### How To Play
 Go to the command line and enter the following to play as the customer:
